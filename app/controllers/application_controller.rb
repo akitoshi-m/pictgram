@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  add_flash_types :success, :info, :warming, :danger
+  add_flash_types :success, :info, :warning, :danger
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
-  def logged_in? #ログインしているかどうかを確認する為のメソッド
+  def logged_in? #ログインしているかどうかを確認するメソッド
     !current_user.nil?
   end
 end

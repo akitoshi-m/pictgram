@@ -26,6 +26,7 @@ class SessionsController < ApplicationController
   def log_in(user)
     session[:user_id] = user.id  #log_inメソッドでsession[:user_id]に
                                  #ログイン情報を暗号化して保存
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def log_out
