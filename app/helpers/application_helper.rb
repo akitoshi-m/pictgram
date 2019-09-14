@@ -1,6 +1,11 @@
 module ApplicationHelper
 
-require_relative "application_controller"
-#requireは外部ファイルを読み込むメソッド
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
+
+  def logged_in? #ログインしているかどうかを確認するメソッド
+    !current_user.nil?
+  end
 
 end
