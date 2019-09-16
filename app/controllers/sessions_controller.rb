@@ -26,8 +26,8 @@ class SessionsController < ApplicationController
   private
   def session_params
     params.require(:session).permit(:email, :password)
-                #　　↑属性名form_forで指定した名前
-                #permitは許可したい情報
+                      #↑form_forで指定した属性名
+                                #permitは許可したい情報
   end
   
   
