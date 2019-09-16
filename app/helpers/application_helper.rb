@@ -1,3 +1,6 @@
 module ApplicationHelper
-  before_action :set_categories
+  include CommonActions
+  
+  before_action :current_user
+  before_action :logged_in?
 end
