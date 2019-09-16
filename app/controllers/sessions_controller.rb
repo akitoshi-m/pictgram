@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.find_by(email: find(user))
+    user = User.find_by(email: session_params[:email])
     #フォームから送信されたメールアドレスを取得し、
     #一致するユーザーがいるか検索
-    if user && user.authenticate(find(user))
+    if user && user.authenticate(session_params[:password])
     #ユーザーのパスワードが正しいかどうか確かめている
     #該当のメールアドレスをもつuserが存在している　
           #かつuserのパスワードが正しい場合にtrueになる
@@ -24,8 +24,10 @@ class SessionsController < ApplicationController
   end
 
   private
-  def find(user)
-    params.require(:user).permit(:session, :password)
+  def session_params
+    params.require(:session).permit(:email, :password)
+                #　　↑属性名form_forで指定した名前
+                #permitは許可したい情報
   end
   
   
