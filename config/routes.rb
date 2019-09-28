@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comment/new'
   get 'topics/new'
   get 'sessions/new'
   
@@ -7,6 +8,10 @@ Rails.application.routes.draw do
   
   resources :users
   resources :topics
+  resources :topics do
+    resources :comments
+    #/topics/:topic_id/comment/newのパスが使用できる
+  end
   
   #"ログインする為のフォームを表示するページ"を取得する
   get    '/login',  to: 'sessions#new' 
@@ -18,4 +23,5 @@ Rails.application.routes.draw do
   
   get 'favorites/index'
   post '/favorites', to: 'favorites#create'
+  delete '/favorites', to: 'favorites#destroy'
 end
